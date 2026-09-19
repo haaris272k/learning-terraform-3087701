@@ -16,7 +16,11 @@ data "aws_ami" "app_ami" {
 
 resource "aws_instance" "web" {
   ami           = data.aws_ami.app_ami.id
-  instance_type = "t3.nano"
+  instance_type = "t3.micro"
+
+  credit_specification {
+    cpu_credits = "standard"
+  }
 
   tags = {
     Name = "HelloWorld"
